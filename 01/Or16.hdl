@@ -13,8 +13,8 @@ CHIP Or16 {
     OUT out[16];
 
     PARTS:
-	Not(in=a, out=nota);
-	Not(in=b, out=notb);
-	And(a=a, b=b, out=andout);
-	Not(in=andout, out=out);
+	Not16(in=a, out=nota);
+	Not16(in=b, out=notb);
+	And16(a=a, b=b, out=andout);
+	Not16(in=andout, out=out);
 }
