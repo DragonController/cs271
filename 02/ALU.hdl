@@ -42,5 +42,19 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+	Mux16(a=x, b[0]=false, b[1]=false, b[2]=false, b[3]=false, b[4]=false, b[5]=false, b[6]=false, b[7]=false, b[8]=false, b[9]=false, b[10]=false, b[11]=false, b[12]=false, b[13]=false, b[14]=false, b[15]=false, sel=zx, out=out1);
+	Not16(in=out1, out=out2);
+	Mux16(a=out1, b=out2, sel=nx, out=out3);
+	Mux16(a=y, b[0]=false, b[1]=false, b[2]=false, b[3]=false, b[4]=false, b[5]=false, b[6]=false, b[7]=false, b[8]=false, b[9]=false, b[10]=false, b[11]=false, b[12]=false, b[13]=false, b[14]=false, b[15]=false, sel=zy, out=out4);
+	Not16(in=out4, out=out5);
+	Mux16(a=out4, b=out5, sel=ny, out=out6);
+	Add16(a=out3, b=out6, out=out7);
+	And16(a=out3, b=out6, out=out8);
+	Mux16(a=out8, b=out7, sel=f, out=out9);
+	Not16(in=out9, out=out10);
+	Mux16(a=out9, b=out10, sel=no, out[0]=outa, out[1]=outb, out[2]=outc, out[3]=outd, out[4]=oute, out[5]=outf, out[6]=outg, out[7]=outh, out[8]=outi, out[9]=outj, out[10]=outk, out[11]=outl, out[12]=outm, out[13]=outn, out[14]=outo, out[15]=outp, out=out, out[15]=ng);
+	Or8Way(in[0]=outa, in[1]=outb, in[2]=outc, in[3]=outd, in[4]=oute, in[5]=outf, in[6]=outg, in[7]=outh, out=out11);
+	Or8Way(in[0]=outi, in[1]=outj, in[2]=outk, in[3]=outl, in[4]=outm, in[5]=outn, in[6]=outo, in[7]=outp, out=out12);
+	Or(a=out11, b=out12, out=out13);
+	Not(in=out13, out=zr);
 }
