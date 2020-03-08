@@ -9,12 +9,11 @@ import java.util.HashMap;
 
 public class Assembler {
 	public static void main(String[] args) {
-		String args0 = "C:\\Users\\Dragon Controller\\Documents\\ComputerArchitecture\\nand2tetris\\projects\\06\\rect\\Rect.asm";
-		if (args0 == null || !args0.endsWith(".asm")) {
+		if (args[0] == null || !args[0].endsWith(".asm")) {
 			System.err.println("You need to have a .asm file as an argument");
 		} else {
 			try {
-				BufferedReader reader = new BufferedReader(new FileReader(args0));
+				BufferedReader reader = new BufferedReader(new FileReader(args[0]));
 				ArrayList<String> lines = new ArrayList<String>();
 				try {
 					while (reader.ready()) {
@@ -144,7 +143,7 @@ public class Assembler {
 				}
 				try {
 					BufferedWriter writer = new BufferedWriter(
-							new FileWriter(args0.substring(0, args0.length() - 3) + "hack"));
+							new FileWriter(args[0].substring(0, args[0].length() - 3) + "hack"));
 					for (int i = 0; i < lines.size(); i++) {
 						writer.write(lines.get(i));
 						if (i < lines.size() - 1) {
@@ -155,7 +154,7 @@ public class Assembler {
 				} catch (IOException e) {
 				}
 			} catch (FileNotFoundException e) {
-				System.err.println(args0 + " is an invalid filename-");
+				System.err.println(args[0] + " is an invalid filename-");
 			}
 		}
 	}
